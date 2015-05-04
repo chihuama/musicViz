@@ -11,14 +11,13 @@ public boolean Play = true;
 void setup() {
   size(1200, 800, P3D);
   println(hueDelta);
-  
+  /*
   minim = new Minim(this);
   player = minim.loadFile("yyy.mp3");
   if (Play) {
     player.play();
-  }
-  
-  println(player.bufferSize());
+  }  
+  println(player.bufferSize());*/
 }
 
 void draw() {
