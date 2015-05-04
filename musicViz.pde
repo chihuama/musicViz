@@ -5,15 +5,13 @@ import ddf.minim.analysis.*;
 Minim minim;
 AudioPlayer player;
 
-AudioMetaData meta;
-BeatDetect beat;
-FFT fft;
-
 public float hueDelta = 0;
-public boolean Play = false;
+public boolean Play = true;
 
 void setup() {
   size(1200, 800, P3D);
+  println(hueDelta);
+  
   minim = new Minim(this);
   player = minim.loadFile("yyy.mp3");
   if (Play) {
@@ -21,23 +19,15 @@ void setup() {
   }
   
   println(player.bufferSize());
-  
-  /*
-  fft = new FFT( player.bufferSize(), player.sampleRate() );
-  println(fft.specSize());
-  
-  meta = player.getMetaData();
-  beat = new BeatDetect();
-  background(-1);
-  noCursor();*/
 }
 
 void draw() {
   colorMode(HSB, 360, 100, 100);
   background(color(0, 10, 10));
 
+  /*
   if (Play) {
-    player.play();
+  player.play();
   hueDelta += 0.8;
   if(hueDelta >= 360) {
     hueDelta = 0;
@@ -47,7 +37,7 @@ void draw() {
   float rMax = 0;
   for(int i = 0; i < player.bufferSize() - 1; i++) {   
     noFill();
-    strokeWeight(1);
+    strokeWeight(2);
     stroke(color(abs(hueDelta + 360*player.right.get(i) - 360), 90, 90));
     //stroke(color(3600*player.right.get(i) - abs(ceil(3600*player.right.get(i))/360)*360, 90, 90));
     ellipse(width/2, height/2, r + player.right.get(i)*i*r*3/player.bufferSize(), r + player.right.get(i)*i*r*3/player.bufferSize());
@@ -70,7 +60,7 @@ void draw() {
     strokeWeight(4);
     point(x0, y0);
   }
-  }
+  }*/
 }
 
 /*
@@ -129,13 +119,14 @@ void draw()
     popStyle();
   }
   endShape();
-}*/
+}
 
 void stop() {
   player.close();
   minim.stop();
   super.stop();
 }
+*/
 
 void keyPressed() {
   if (key == ' ') {
